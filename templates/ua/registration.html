@@ -1,5 +1,12 @@
 {% extends 'ua/base.html' %}
 
+{% load static %}
+
 {% block body_block %}
-<h1>I am registration page</h1>
+<form enctype="multipart/form-data" method="POST">
+    {% csrf_token %}
+    {{ userForm.as_p }}
+    {{ userInfoForm.as_p }}
+    <input type="submit" name="submit" value="Register">
+</form>
 {% endblock body_block %}
