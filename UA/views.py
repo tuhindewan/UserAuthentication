@@ -7,3 +7,9 @@ def index(request):
 
     }
     return render(request, 'ua/index.html', context=dictionary)
+
+def registration(request):
+     dictionary = {
+
+     }
+     return render(request, 'ua/registration.html', context=dictionary)   
