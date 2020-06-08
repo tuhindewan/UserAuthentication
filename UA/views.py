@@ -40,4 +40,11 @@ def registration(request):
         'userInfoForm': userInfoForm,
         'registered': registered,
     }
-    return render(request, 'ua/registration.html', context=dictionary)   
+    return render(request, 'ua/registration.html', context=dictionary)
+
+
+def user_login(request):
+    dictionary = {
+
+    }   
+    return render(request, 'ua/login.html', context=dictionary)   
