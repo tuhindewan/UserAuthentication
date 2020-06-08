@@ -54,9 +54,6 @@ def login_page(request):
 
 
 def user_login(request):
-    dictionary = {
-
-    }
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
@@ -70,4 +67,4 @@ def user_login(request):
         else:
             return HttpResponse("Invalid Credentials!!")        
     
-    return render(request, 'ua/login.html', context=dictionary)
+    return HttpResponseRedirect(reverse('UA:ua_login'))
