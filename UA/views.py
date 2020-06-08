@@ -1,5 +1,8 @@
 from django.shortcuts import render
 from . import forms
+from django.contrib.auth import authenticate, login
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
 
 # Create your views here.
 
@@ -48,3 +51,23 @@ def login_page(request):
 
     }   
     return render(request, 'ua/login.html', context=dictionary)   
+
+
+def user_login(request):
+    dictionary = {
+
+    }
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('UA:UA_index'))
+            return HttpResponse('Your Account is Inactive!!')
+        else:
+            return HttpResponse("Invalid Credentials!!")        
+    
+    return render(request, 'ua/login.html', context=dictionary)
