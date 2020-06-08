@@ -7,5 +7,5 @@ app_name = 'UA'
 urlpatterns = [
     path('', views.index, name='UA_index'),
     path('registration/', views.registration, name='registration'),
-    path('login/', views.user_login, name='ua_login'),
+    path('login/', views.login_page, name='ua_login'),
 ]

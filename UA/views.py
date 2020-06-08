@@ -43,7 +43,7 @@ def registration(request):
     return render(request, 'ua/registration.html', context=dictionary)
 
 
-def user_login(request):
+def login_page(request):
     dictionary = {
 
     }   
