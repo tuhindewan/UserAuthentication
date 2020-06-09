@@ -6,6 +6,24 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from . import models
+from django.conf import settings
+from django.contrib.auth.decorators import user_passes_test
+
+
+
+#Logout required decorators 
+def logout_required(function=None, logout_url=None):
+    """
+    Decorator for views that checks that the user is logged out, redirecting
+    to the home page if necessary.
+    """
+    actual_decorator = user_passes_test(
+        lambda u: not u.is_authenticated,
+        login_url=logout_url,
+    )
+    if function:
+        return actual_decorator(function)
+    return actual_decorator
 
 # Create your views here.
 
@@ -20,6 +38,7 @@ def index(request):
     }
     return render(request, 'ua/index.html', context=dictionary)
 
+@logout_required(logout_url='/')
 def registration(request):
     userForm = forms.UserForm()
     userInfoForm = forms.UserInfoForm()
