@@ -4,13 +4,19 @@ from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from . import models
 
 # Create your views here.
 
 @login_required(login_url='/login/')
 def index(request):
+    user_id = request.user.id
+    basics  = User.objects.get(pk=user_id)
+    others = models.UserInfo.objects.get(user=user_id)
     dictionary = {
-
+        'basics': basics,
+        'others': others,
     }
     return render(request, 'ua/index.html', context=dictionary)
 

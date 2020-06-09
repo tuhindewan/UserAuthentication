@@ -1,5 +1,8 @@
 {% extends 'ua/base.html' %}
 
 {% block body_block %}
-<h1>I am index page</h1>
+<p>Hi {{ basics.username }},</p>
+<p>Your Email: {{ basics.email }}</p>
+<p><a href="{{ others.facebook_link }}">Facebook Profile</a></p>
+<p><img src="/media/{{ others.profile_pic }}" width="200px"></p>
 {% endblock body_block %}
